@@ -5,6 +5,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
+import ru.kraser.simple_security.exception.AuthException;
 import ru.kraser.simple_security.model.User;
 import ru.kraser.simple_security.service.UserService;
 
@@ -25,8 +26,7 @@ public class AuthenticationService {
                     )
             );
         } catch (AuthenticationException e) {
-            //throw new AuthException("Неверное имя пользователя или пароль !!!"); // Catch in ErrorHandler.class
-            throw new RuntimeException("Неверное имя пользователя или пароль !!!");
+            throw new AuthException("Неверное имя пользователя или пароль !!!");
         }
 
         // User user = authenticationClient.authenticate(request); // If UserService.class in another module
